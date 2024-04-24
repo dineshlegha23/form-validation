@@ -32,45 +32,92 @@ const App = () => {
   }
 
   const validate = (name, value) => {
-    if (name === "name") {
-      if (value.length <= 3 || value.length >= 9) {
-        setError((prev) => ({ ...prev, [name]: "Name must be b/w (4-8)" }));
-        return;
+    switch (name) {
+      case "name": {
+        if (value.length <= 3 || value.length >= 9) {
+          setError((prev) => ({ ...prev, [name]: "Name must be b/w (4-8)" }));
+          return;
+        }
+        break;
       }
-    }
-    if (name === "email") {
-      if (value < 4) {
-        setError((prev) => ({
-          ...prev,
-          [name]: "Email must be atleast 5 chars",
-        }));
-        return;
+      case "email": {
+        if (value < 4) {
+          setError((prev) => ({
+            ...prev,
+            [name]: "Email must be atleast 5 chars",
+          }));
+          return;
+        }
+
+        if (value.length > 20) {
+          setError((prev) => ({
+            ...prev,
+            [name]: "Email must not be greater than 20",
+          }));
+          return;
+        }
+        if (value.includes("dine")) {
+          setError((prev) => ({
+            ...prev,
+            [name]: "Email must not contain dine",
+          }));
+          return;
+        }
+        break;
       }
 
-      if (value.length > 20) {
-        setError((prev) => ({
-          ...prev,
-          [name]: "Email must not be greater than 20",
-        }));
-        return;
-      }
-      if (value.includes("dine")) {
-        setError((prev) => ({
-          ...prev,
-          [name]: "Email must not contain dine",
-        }));
-        return;
-      }
+      case "password":
+        {
+          if (value.length < 6) {
+            setError((prev) => ({
+              ...prev,
+              [name]: "Password must be atleast 6 chars",
+            }));
+            return;
+          }
+        }
+        break;
     }
-    if (name === "password") {
-      if (value.length < 6) {
-        setError((prev) => ({
-          ...prev,
-          [name]: "Password must be atleast 6 chars",
-        }));
-        return;
-      }
-    }
+
+    // if (name === "name") {
+    //   if (value.length <= 3 || value.length >= 9) {
+    //     setError((prev) => ({ ...prev, [name]: "Name must be b/w (4-8)" }));
+    //     return;
+    //   }
+    // }
+    // if (name === "email") {
+    //   if (value < 4) {
+    //     setError((prev) => ({
+    //       ...prev,
+    //       [name]: "Email must be atleast 5 chars",
+    //     }));
+    //     return;
+    //   }
+
+    //   if (value.length > 20) {
+    //     setError((prev) => ({
+    //       ...prev,
+    //       [name]: "Email must not be greater than 20",
+    //     }));
+    //     return;
+    //   }
+    //   if (value.includes("dine")) {
+    //     setError((prev) => ({
+    //       ...prev,
+    //       [name]: "Email must not contain dine",
+    //     }));
+    //     return;
+    //   }
+    // }
+    // if (name === "password") {
+    //   if (value.length < 6) {
+    //     setError((prev) => ({
+    //       ...prev,
+    //       [name]: "Password must be atleast 6 chars",
+    //     }));
+    //     return;
+    //   }
+    // }
   };
 
   return (
