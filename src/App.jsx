@@ -33,6 +33,8 @@ const App = () => {
         label="Enter your email"
         value={data.email}
         onChange={handleInputChange}
+        pattern={"^[^s@]+@[^s@]+.[^s@]+$"}
+        error={"Email should have @ and ."}
       />
       <Input
         type="password"
@@ -40,6 +42,8 @@ const App = () => {
         label="Enter your password"
         value={data.password}
         onChange={handleInputChange}
+        pattern={"^[a-zA-Z0-9]{6,12}"}
+        error={"Password must be between (6-12)"}
       />
       <button
         type="submit"
